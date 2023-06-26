@@ -13,8 +13,7 @@ class signup_view(CreateView):
     template_name = 'myapp/signup.html'
     success_url = reverse_lazy('index')
 
-def login_view(request):
-    return render(request, "myapp/login.html")
+
 
 def friends(request):
     return render(request, "myapp/friends.html")
