@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 from .models import CustomUser
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
 
 def index(request):
     return render(request, "myapp/index.html")
@@ -13,7 +14,9 @@ class signup_view(CreateView):
     template_name = 'myapp/signup.html'
     success_url = reverse_lazy('index')
 
-
+class login(LoginView):
+    template_name = 'myapp/login.html'
+    form_class=LoginForm
 
 def friends(request):
     return render(request, "myapp/friends.html")

@@ -1,0 +1,18 @@
+form {
+    margin: 10px auto;
+    margin-left: 25px;
+}
+
+th,td {
+    padding: 10px; 
+}
+
+.submit {
+    margin: 10px auto;
+    font-size: 1rem;
+    display: block;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 8px;
+}

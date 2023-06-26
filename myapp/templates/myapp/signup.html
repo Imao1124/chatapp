@@ -3,15 +3,15 @@
 {% load static %}
 
 {% block extra_style %}
-     <link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
 {% endblock %}
 
 {% block header-title %}会員登録{% endblock %}
 
 {% block content %}
-
      <form method='post' enctype="multipart/form-data">
-     {% csrf_token %}
+
+          {% csrf_token %}
 
           <table>
           {% for filed in form %}
@@ -22,18 +22,15 @@
           {% endfor %}
           </table>
 
-          <button type="submit" class="submit">Sign Up</button>
+          <button type="submit" class="submit">登録</button>
 
-          
           {% for filed in form %}
                {% if filed.errors %}
                     {{ filed.errors }}
                {% endif %}
           {% endfor %}
           
-
      </form>
-
 {% endblock %}
 
 {% block footer %}{% endblock %}
