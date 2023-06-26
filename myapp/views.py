@@ -19,7 +19,11 @@ class login(LoginView):
     form_class=LoginForm
 
 def friends(request):
-    return render(request, "myapp/friends.html")
+    friends = CustomUser.objects.all().values('username', 'img')
+    context = {
+        'friends': friends,
+    }
+    return render(request, "myapp/friends.html", context)
 
 def talk_room(request):
     return render(request, "myapp/talk_room.html")

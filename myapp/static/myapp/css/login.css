@@ -1,3 +1,8 @@
+.login-error {
+    font-size: 12px;
+    margin-left: 35px;
+}
+
 form {
     margin: 10px auto;
     margin-left: 25px;
@@ -9,7 +14,7 @@ th,td {
 
 .submit {
     margin: 10px auto;
-    font-size: 1rem;
+    font-size: 15px;
     display: block;
     background-color: white;
     border: 1px solid gray;

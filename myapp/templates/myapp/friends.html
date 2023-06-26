@@ -1,1 +1,21 @@
-fr
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static 'myapp/css/friends.css' %}" />
+{% endblock %}
+
+{% block header-title %}友達{% endblock %}
+
+{% block content %}
+
+    {% for friend in friends %}
+    <table>
+        <tr>
+            <td>{{friend.username}}</td>
+            <td><img src="/media/{{ friend.img }}"></td>
+        </tr>
+    </table>
+    {% endfor %}
+
+{% endblock %}
