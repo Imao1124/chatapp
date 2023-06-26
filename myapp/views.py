@@ -1,14 +1,17 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 from .models import CustomUser
+from .forms import SignUpForm
+from django.urls import reverse_lazy
 
 def index(request):
     return render(request, "myapp/index.html")
 
 class signup_view(CreateView):
+    form_class = SignUpForm
     model = CustomUser
-    fields = ['username', 'email', 'password', 'img']
     template_name = 'myapp/signup.html'
+    success_url = reverse_lazy('index')
 
 def login_view(request):
     return render(request, "myapp/login.html")
