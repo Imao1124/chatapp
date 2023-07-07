@@ -1,0 +1,29 @@
+.user-container {
+    display: flex;
+    border-bottom: solid 1px #9b9b9b;
+    height: 80px;
+}
+
+.icon-container {
+    position: relative;
+    top: 5px;
+    left: 5px;  
+}
+
+.username-container {
+    position: relative;
+    margin-left: 30px;
+    top: 30px;
+    font-size: medium;
+}
+
+
+img.icon {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius:50%;
+    outline: solid;
+    outline-color: #9b9b9b;
+    outline-width: 1px;
+}

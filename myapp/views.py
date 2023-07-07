@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
-from .models import CustomUser
-from .forms import SignUpForm, LoginForm
+from .models import CustomUser, Message
+from .forms import SignUpForm, LoginForm, MessageForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 
@@ -16,7 +16,7 @@ class signup_view(CreateView):
 
 class login(LoginView):
     template_name = 'myapp/login.html'
-    form_class=LoginForm
+    form_class = LoginForm
 
 def friends(request):
     friends = CustomUser.objects.all().values('username', 'img')
@@ -25,8 +25,14 @@ def friends(request):
     }
     return render(request, "myapp/friends.html", context)
 
-def talk_room(request):
-    return render(request, "myapp/talk_room.html")
+class talk_room(CreateView):
+    template_name = 'myapp/talk_room.html'
+    form_class = MessageForm
+
+    # def get_form_kwargs(self):
+    #     kwgs = super().get_form_kwargs()
+    #     kwgs['sender'] = self.request.user
+    #     return kwgs
 
 def setting(request):
     return render(request, "myapp/setting.html")

@@ -8,7 +8,7 @@ urlpatterns = [
     path('signup', views.signup_view.as_view(), name='signup_view'),
     path('login', views.login.as_view(), name='login_view'),
     path('friends', views.friends, name='friends'),
-    path('talk_room', views.talk_room, name='talk_room'),
+    path('talk_room', views.talk_room.as_view(), name='talk_room'),
     path('setting', views.setting, name='setting'),
     path('base', views.base, name='base'),
 ]

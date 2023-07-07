@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import CustomUser
+from .models import CustomUser, Message
+from django import forms
 
 class SignUpForm(UserCreationForm):
     class Meta:
@@ -11,3 +12,8 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
+class MessageForm(forms.Form):
+    class Meta:
+        model = Message
+        # exclude = ['sender', 'receiver', 'timestamp']
