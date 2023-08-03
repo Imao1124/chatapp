@@ -12,13 +12,14 @@ class signup_view(CreateView):
     form_class = SignUpForm
     model = CustomUser
     template_name = 'myapp/signup.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('index') # signup に成功したら index にリダイレクト
 
 class login(LoginView):
-    template_name = 'myapp/login.html'
     form_class = LoginForm
+    template_name = 'myapp/login.html'
 
 def friends(request):
+    # username と img を取り出す
     friends = CustomUser.objects.all().values('username', 'img')
     context = {
         'friends': friends,
@@ -26,8 +27,9 @@ def friends(request):
     return render(request, "myapp/friends.html", context)
 
 class talk_room(CreateView):
-    template_name = 'myapp/talk_room.html'
     form_class = MessageForm
+    model = Message
+    template_name = 'myapp/talk_room.html'
 
     # def get_form_kwargs(self):
     #     kwgs = super().get_form_kwargs()

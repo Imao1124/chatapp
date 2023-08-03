@@ -13,7 +13,7 @@ class LoginForm(AuthenticationForm):
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
 
-class MessageForm(forms.Form):
+class MessageForm(forms.ModelForm):
     class Meta:
-        model = Message
-        # exclude = ['sender', 'receiver', 'timestamp']
+        model = Message 
+        fields = ('message', )

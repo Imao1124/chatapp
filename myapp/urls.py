@@ -10,7 +10,8 @@ urlpatterns = [
     path('friends', views.friends, name='friends'),
     path('talk_room', views.talk_room.as_view(), name='talk_room'),
     path('setting', views.setting, name='setting'),
-    path('base', views.base, name='base'),
 ]
+
+# CustomUser で img を画像へのリンクで記憶するための設定
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

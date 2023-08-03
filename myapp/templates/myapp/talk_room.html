@@ -6,14 +6,18 @@
 <link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
 {% endblock %}
 
-{% block header-title %}{% endblock %}
+{% block header-title %}相手{% endblock %}
 
 {% block content %}
-     <form method='post' enctype="multipart/form-data">
-
-          {% form.as_p %}
-          
-     </form>
+     
 {% endblock %}
 
-{% block footer %}{% endblock %}
+{% block footer %}
+<form method='post' enctype="multipart/form-data">
+
+   {% csrf_token %}
+
+   {{ form.as_p }}
+          
+</form>
+{% endblock %}
