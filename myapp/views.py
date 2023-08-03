@@ -31,10 +31,14 @@ class talk_room(CreateView):
     model = Message
     template_name = 'myapp/talk_room.html'
 
-    # def get_form_kwargs(self):
-    #     kwgs = super().get_form_kwargs()
-    #     kwgs['sender'] = self.request.user
-    #     return kwgs
+    def get_context_data(self, **kwargs):
+        pk:int=self.kwargs['pk']
+        print(pk)
+        return super().get_context_data(**kwargs)
+    
+
+    def get_messages(self, pk):
+        return Message.objects.filter(sender=pk, receiver=self.request.user)
 
 def setting(request):
     return render(request, "myapp/setting.html")
