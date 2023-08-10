@@ -15,5 +15,5 @@ class LoginForm(AuthenticationForm):
 
 class MessageForm(forms.ModelForm):
     class Meta:
-        model = Message 
-        fields = ('message', )
+        model = Message
+        fields = ('message',)

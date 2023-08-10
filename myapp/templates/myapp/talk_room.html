@@ -3,21 +3,28 @@
 {% load static %}
 
 {% block extra_style %}
-<link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
+   <link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
 {% endblock %}
 
 {% block header-title %}相手{% endblock %}
 
 {% block content %}
-     
+
+   {% for message in mymessages %}
+   <div>
+      <p>{{ message.message }}</p>
+   </div>
+   {% endfor %}
+      
 {% endblock %}
 
+
 {% block footer %}
-<form method='post' enctype="multipart/form-data">
 
+   <messageform method='post'>
    {% csrf_token %}
+   {{ messageform.as_p }}
+   <button type='submit'>送信</button>
+   </messageform>
 
-   {{ form.as_p }}
-          
-</form>
 {% endblock %}

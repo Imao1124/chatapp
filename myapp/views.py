@@ -26,19 +26,26 @@ def friends(request):
     }
     return render(request, "myapp/friends.html", context)
 
-class talk_room(CreateView):
-    form_class = MessageForm
-    model = Message
-    template_name = 'myapp/talk_room.html'
+def talk_room(request, pk):
+    mymessages = Message.objects.filter(sender=pk, receiver=request.user)
+    hismessages = Message.objects.filter(sender=request.user, receiver=pk)
+    if request.method == 'POST':
+        # フォームの内容を取得
+        messageform = MessageForm(request.POST)
+        if messageform.is_valid():
+            # フォームの内容を保存
+            messageform.save()
+            return redirect('talk_room', pk)
+    else:
+        messageform = MessageForm()
 
-    def get_context_data(self, **kwargs):
-        pk:int=self.kwargs['pk']
-        print(pk)
-        return super().get_context_data(**kwargs)
+    context = {
+        'mymessages': mymessages,
+        'hismessages': hismessages,
+        'messageform': messageform,
+    }
     
-
-    def get_messages(self, pk):
-        return Message.objects.filter(sender=pk, receiver=self.request.user)
+    return render(request, "myapp/talk_room.html", context)
 
 def setting(request):
     return render(request, "myapp/setting.html")
