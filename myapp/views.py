@@ -27,21 +27,21 @@ def friends(request):
     return render(request, "myapp/friends.html", context)
 
 def talk_room(request, pk):
-    mymessages = Message.objects.filter(sender=pk, receiver=request.user)
-    hismessages = Message.objects.filter(sender=request.user, receiver=pk)
+    
     if request.method == 'POST':
         # フォームの内容を取得
         messageform = MessageForm(request.POST)
         if messageform.is_valid():
             # フォームの内容を保存
             messageform.save()
+            print('わあ')
             return redirect('talk_room', pk)
     else:
         messageform = MessageForm()
 
     context = {
-        'mymessages': mymessages,
-        'hismessages': hismessages,
+        'mymessages': Message.objects.filter(sender=pk, receiver=request.user),
+        'hismessages': Message.objects.filter(sender=request.user, receiver=pk),
         'messageform': messageform,
     }
     

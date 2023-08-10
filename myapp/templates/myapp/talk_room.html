@@ -21,10 +21,10 @@
 
 {% block footer %}
 
-   <messageform method='post'>
-   {% csrf_token %}
-   {{ messageform.as_p }}
-   <button type='submit'>送信</button>
-   </messageform>
+   <form method='POST'>
+      {% csrf_token %}
+      {{ messageform.as_p }}
+      <input type='submit' value='送信'>
+   </form>
 
 {% endblock %}
