@@ -26,22 +26,26 @@ def friends(request):
     }
     return render(request, "myapp/friends.html", context)
 
-def talk_room(request, pk):
-    
+def talk_room(request, pk): 
     if request.method == 'POST':
         # フォームの内容を取得
         messageform = MessageForm(request.POST)
         if messageform.is_valid():
             # フォームの内容を保存
-            messageform.save()
+            messageform.save(sender=request.user, reciever=CustomUser.objects.get(pk=pk))
             print('わあ')
             return redirect('talk_room', pk)
     else:
         messageform = MessageForm()
 
+    frommetohim = Message.objects.filter(sender=pk, receiver=request.user)
+    fromhimtome = Message.objects.filter(sender=request.user, receiver=pk)
+    all = frommetohim | fromhimtome
+    sorted = all.order_by('timestamp')
+
     context = {
-        'mymessages': Message.objects.filter(sender=pk, receiver=request.user),
-        'hismessages': Message.objects.filter(sender=request.user, receiver=pk),
+        'he': CustomUser.objects.get(pk=pk),
+        'messages': sorted,
         'messageform': messageform,
     }
     

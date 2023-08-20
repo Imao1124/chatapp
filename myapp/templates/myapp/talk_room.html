@@ -6,13 +6,25 @@
    <link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
 {% endblock %}
 
-{% block header-title %}相手{% endblock %}
+{% block header-title %}
+{{ he.username }}
+{% endblock %}
 
 {% block content %}
 
-   {% for message in mymessages %}
+   {% for message in messages %}
    <div>
-      <p>{{ message.message }}</p>
+      {% if message.sender == he %}
+         <div>
+         {{ message.message }}
+         {{ message.timestamp }}
+         </div>
+      {% else %}
+         <div class="right">
+         {{ message.message }}
+         {{ message.timestamp }}
+         </div>
+      {% endif %}
    </div>
    {% endfor %}
       

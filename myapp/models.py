@@ -11,7 +11,7 @@ class Message(models.Model):
     sender = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='sender')
     receiver = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='receiver')
     message = models.TextField(max_length=200)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField()
 
     class Meta:
         verbose_name = 'Message'

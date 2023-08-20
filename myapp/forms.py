@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser, Message
 from django import forms
+from django.utils import timezone
 
 class SignUpForm(UserCreationForm):
     class Meta:
@@ -17,3 +18,12 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('message',)
+
+    def save(self, sender, reciever, commit=True):
+        message = super().save(commit=False)
+        message.sender = sender
+        message.receiver = reciever
+        message.timestamp = timezone.now()
+        if commit:
+            message.save()
+        return message
