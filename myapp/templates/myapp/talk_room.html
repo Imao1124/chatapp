@@ -6,9 +6,25 @@
    <link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
 {% endblock %}
 
-{% block header-title %}
-{{ he.username }}
+{% block header %}
+<header class="header">
+      <div class="header-container">
+         <a href="{% url 'friends' %}">
+            <div class="header-backlink-container">
+               <
+            </div>
+            {% comment %} TODO: 戻るボタンの判定が小さい {% endcomment %}
+         </a>
+         <span class="header-container__title">
+            {% block header-title %}{{ he.username }}{% endblock %}
+         </span>
+         <button class="header-reload-button" onclick="location.href=''">更新</button>
+         {% comment %} TODO: 更新ボタンこれでいいのか？ {% endcomment %}
+      </div>
+   </header>
 {% endblock %}
+
+
 
 {% block content %}
    <div class="massage-container">
@@ -40,8 +56,8 @@
       <form method='POST'>
          {% csrf_token %}
          <div class="form-container">
-            {{ messageform.message }}
-            <input type='submit' class="submit"value='送信'>
+            {{ messageform.text }}
+            <input type='submit' class="submit" value='送信'>
          </div>
       </form>
    <div>

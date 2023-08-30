@@ -1,14 +1,14 @@
 from django.shortcuts import redirect, render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView,  LogoutView, PasswordChangeView
 from .models import CustomUser, Message
 from .forms import SignUpForm, LoginForm, MessageForm
-from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
 
 def index(request):
     return render(request, "myapp/index.html")
 
-class signup_view(CreateView):
+class signup(CreateView):
     form_class = SignUpForm
     model = CustomUser
     template_name = 'myapp/signup.html'
@@ -58,7 +58,16 @@ def talk_room(request, pk):
     return render(request, "myapp/talk_room.html", context)
 
 def setting(request):
-    return render(request, "myapp/setting.html")
+    context = {
+        'pk': request.user.pk,
+    }
+    return render(request, "myapp/setting.html", context)
 
-def base(request):
-    return render(request, "myapp/base.html")
+class username_change(UpdateView):
+    model = CustomUser
+    fields = ['username']
+    template_name = 'myapp/username_change.html'
+    success_url = reverse_lazy('setting')
+
+class logout(LogoutView):
+    template_name = 'myapp/index.html'

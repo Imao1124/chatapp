@@ -27,3 +27,5 @@ class MessageForm(forms.ModelForm):
         if commit:
             message.save()
         return message
+    
+# TODO: フォームに入力した文字が小さい
