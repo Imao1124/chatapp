@@ -10,16 +10,18 @@
 {% block content %}
 
     {% for friend in friends %}
+    <a href="/talk_room/{{ friend.pk }}">
     <div class="user-container">        
             <div class="icon-container"><img src="/media/{{ friend.img }}" class="icon"></div>
             <div class="namemessage-container">
                 <div class="username-container">{{ friend.username }}</div>
                 <div class="messagetime-container">
-                    <div class="message-container">{{ friend.message.message }}</div>
-                    <div class="time-container">{{ friend.message.timestamp|date:"H:i" }}</div>
+                    <div class="message-container">{{ friend.latest_message.message }}</div>
+                    <div class="time-container">{{ friend.latest_message.timestamp|date:"H:i" }}</div>
                 </div>
             </div>
     </div>
+    </a>
     {% endfor %}
 
 {% endblock %}

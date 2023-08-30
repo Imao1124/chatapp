@@ -20,17 +20,17 @@ class login(LoginView):
 
 def friends(request):
     # username と img を取り出す
-    friends = CustomUser.objects.all().values('username', 'img')
+    friends = CustomUser.objects.all().values('pk', 'username', 'img')
+    friends = friends.exclude(pk=request.user.pk) # 自分以外のユーザーを取り出す
 
-    # それぞれのユーザーとの最新のメッセージを取得
+    # pkとそれぞれのユーザーとの最新のメッセージを格納
     for friend in friends:
-        friend['message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()
-
-    print(friends)
+        friend['latest_message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()
 
     context = {
         'friends': friends,
     }
+
     return render(request, "myapp/friends.html", context)
 
 def talk_room(request, pk): 
