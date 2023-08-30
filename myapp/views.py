@@ -26,6 +26,7 @@ def friends(request):
     # pkとそれぞれのユーザーとの最新のメッセージを格納
     for friend in friends:
         friend['latest_message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()
+        
 
     context = {
         'friends': friends,
@@ -34,19 +35,23 @@ def friends(request):
     return render(request, "myapp/friends.html", context)
 
 def talk_room(request, pk): 
+
+    # 送信者の情報を取得
+    he = CustomUser.objects.get(pk=pk)
+
     if request.method == 'POST':
         # フォームの内容を取得
         messageform = MessageForm(request.POST)
         if messageform.is_valid():
             # フォームの内容を保存
-            messageform.save(sender=request.user, reciever=CustomUser.objects.get(pk=pk))
+            messageform.save(sender=request.user, reciever=he)
             return redirect('talk_room', pk)
     else:
         messageform = MessageForm()
 
     context = {
-        'he': CustomUser.objects.get(pk=pk),
-        'messages': Message.get_private_message(request.user, CustomUser.objects.get(pk=pk)),
+        'he': he,
+        'messages': Message.get_private_message(request.user, he),
         'messageform': messageform,
     }
     

@@ -10,13 +10,13 @@ class CustomUser(AbstractUser):
 class Message(models.Model):
     sender = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='sender')
     receiver = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='receiver')
-    message = models.TextField(max_length=200)
+    text = models.TextField(max_length=200)
     timestamp = models.DateTimeField()
 
     class Meta:
         verbose_name = 'Message'
 
-    # お互いのメッセージを取得して並び替え
+    # お互いのメッセージを取得して時系列で並び替え
     def get_private_message(me, he):
         frommetohim = Message.objects.filter(sender=he, receiver=me)
         fromhimtome = Message.objects.filter(sender=me, receiver=he)

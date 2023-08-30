@@ -17,7 +17,7 @@ class LoginForm(AuthenticationForm):
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        fields = ('message',)
+        fields = ('text',)
 
     def save(self, sender, reciever, commit=True):
         message = super().save(commit=False)

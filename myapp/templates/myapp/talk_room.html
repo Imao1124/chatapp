@@ -19,7 +19,7 @@
                <div> > {{ message.sender }}</div>
                <div class="timestamp-container">{{ message.timestamp|date:"m/d H:i" }}</div>
             </div>
-            <div>{{ message.message }}</div>
+            <div>{{ message.text }}</div>
          </div>
       {% else %}
          <div class="mymessage-container">
@@ -27,7 +27,7 @@
                <div> > {{ message.sender }}</div>
                <div class="timestamp-container">{{ message.timestamp|date:"m/d H:i" }}</div>
             </div>
-            <div>{{ message.message }}</div>
+            <div>{{ message.text }}</div>
          </div>
       {% endif %}
    {% endfor %}
