@@ -21,6 +21,13 @@ class login(LoginView):
 def friends(request):
     # username と img を取り出す
     friends = CustomUser.objects.all().values('username', 'img')
+
+    # それぞれのユーザーとの最新のメッセージを取得
+    for friend in friends:
+        friend['message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()
+
+    print(friends)
+
     context = {
         'friends': friends,
     }
@@ -33,19 +40,13 @@ def talk_room(request, pk):
         if messageform.is_valid():
             # フォームの内容を保存
             messageform.save(sender=request.user, reciever=CustomUser.objects.get(pk=pk))
-            print('わあ')
             return redirect('talk_room', pk)
     else:
         messageform = MessageForm()
 
-    frommetohim = Message.objects.filter(sender=pk, receiver=request.user)
-    fromhimtome = Message.objects.filter(sender=request.user, receiver=pk)
-    all = frommetohim | fromhimtome
-    sorted = all.order_by('timestamp')
-
     context = {
         'he': CustomUser.objects.get(pk=pk),
-        'messages': sorted,
+        'messages': Message.get_private_message(request.user, CustomUser.objects.get(pk=pk)),
         'messageform': messageform,
     }
     

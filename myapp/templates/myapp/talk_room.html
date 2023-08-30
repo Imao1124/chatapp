@@ -11,32 +11,38 @@
 {% endblock %}
 
 {% block content %}
-
+   <div class="massage-container">
    {% for message in messages %}
-   <div>
       {% if message.sender == he %}
-         <div>
-         {{ message.message }}
-         {{ message.timestamp }}
+         <div class="hismessage-container">
+            <div class="nameandtime-container">
+               <div> > {{ message.sender }}</div>
+               <div class="timestamp-container">{{ message.timestamp|date:"m/d H:i" }}</div>
+            </div>
+            <div>{{ message.message }}</div>
          </div>
       {% else %}
-         <div class="right">
-         {{ message.message }}
-         {{ message.timestamp }}
+         <div class="mymessage-container">
+            <div class="nameandtime-container">
+               <div> > {{ message.sender }}</div>
+               <div class="timestamp-container">{{ message.timestamp|date:"m/d H:i" }}</div>
+            </div>
+            <div>{{ message.message }}</div>
          </div>
       {% endif %}
-   </div>
    {% endfor %}
-      
+   </div> 
 {% endblock %}
 
 
 {% block footer %}
-
-   <form method='POST'>
-      {% csrf_token %}
-      {{ messageform.as_p }}
-      <input type='submit' value='送信'>
-   </form>
-
+   <div class="footer-container">
+      <form method='POST'>
+         {% csrf_token %}
+         <div class="form-container">
+            {{ messageform.message }}
+            <input type='submit' class="submit"value='送信'>
+         </div>
+      </form>
+   <div>
 {% endblock %}

@@ -12,7 +12,13 @@
     {% for friend in friends %}
     <div class="user-container">        
             <div class="icon-container"><img src="/media/{{ friend.img }}" class="icon"></div>
-            <div class="username-container" >{{ friend.username }}</div>
+            <div class="namemessage-container">
+                <div class="username-container">{{ friend.username }}</div>
+                <div class="messagetime-container">
+                    <div class="message-container">{{ friend.message.message }}</div>
+                    <div class="time-container">{{ friend.message.timestamp|date:"H:i" }}</div>
+                </div>
+            </div>
     </div>
     {% endfor %}
 

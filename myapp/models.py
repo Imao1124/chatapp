@@ -15,3 +15,11 @@ class Message(models.Model):
 
     class Meta:
         verbose_name = 'Message'
+
+    # お互いのメッセージを取得して並び替え
+    def get_private_message(me, he):
+        frommetohim = Message.objects.filter(sender=he, receiver=me)
+        fromhimtome = Message.objects.filter(sender=me, receiver=he)
+        all = frommetohim | fromhimtome
+        sorted = all.order_by('timestamp')
+        return sorted

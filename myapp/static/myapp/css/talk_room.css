@@ -1,3 +1,43 @@
-.right {
+.mymessage-container {
+    color: rgb(6, 126, 56);
+    border-bottom: solid 1px #9b9b9b;
+    height: auto;
+    
+}
+
+.hismessage-container {
+    border-bottom: solid 1px #9b9b9b;
+    height: auto;
+
+}
+
+.timestamp-container {
     text-align: right;
+    font-size: small;
+    margin-left: auto;
+}
+
+.nameandtime-container {
+    display: flex;
+    margin: 5px;
+}
+
+.form-container {
+    display: flex;
+    height: 25px;
+    justify-content: center;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.submit {
+    font-size: 15px;
+    display: block;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.footer-container {
+    display: inline;
 }
