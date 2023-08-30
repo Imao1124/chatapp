@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView,  LogoutView, PasswordChangeView
+from django.contrib.auth.views import LoginView,  LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Message
 from .forms import SignUpForm, LoginForm, MessageForm
 
@@ -18,6 +20,7 @@ class login(LoginView):
     form_class = LoginForm
     template_name = 'myapp/login.html'
 
+@login_required
 def friends(request):
     # username と img を取り出す
     friends = CustomUser.objects.all().values('pk', 'username', 'img')
@@ -34,6 +37,7 @@ def friends(request):
 
     return render(request, "myapp/friends.html", context)
 
+@login_required
 def talk_room(request, pk): 
 
     # 送信者の情報を取得
@@ -57,13 +61,14 @@ def talk_room(request, pk):
     
     return render(request, "myapp/talk_room.html", context)
 
+@login_required
 def setting(request):
     context = {
         'pk': request.user.pk,
     }
     return render(request, "myapp/setting.html", context)
 
-class username_change(UpdateView):
+class username_change(LoginRequiredMixin, UpdateView):
     model = CustomUser
     fields = ['username']
     template_name = 'myapp/username_change.html'
