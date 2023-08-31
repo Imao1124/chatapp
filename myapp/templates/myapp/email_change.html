@@ -14,19 +14,19 @@
           {% csrf_token %}
 
           <table>
-          {% for filed in form %}
+          {% for field in form %}
           <tr>
-               <th>{{ filed.label_tag }}</th>
-               <td>{{ filed }}</td>
+               <th>{{ field.label_tag }}</th>
+               <td>{{ field }}</td>
           </tr>
           {% endfor %}
           </table>
 
           <button type="submit" class="submit">変更</button>
 
-          {% for filed in form %}
-               {% if filed.errors %}
-                    {{ filed.errors }}
+          {% for field in form %}
+               {% if field.errors %}
+                    {{ field.errors }}
                {% endif %}
           {% endfor %}
           
