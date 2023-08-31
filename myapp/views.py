@@ -74,5 +74,17 @@ class username_change(LoginRequiredMixin, UpdateView):
     template_name = 'myapp/username_change.html'
     success_url = reverse_lazy('setting')
 
+class email_change(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    fields = ['email']
+    template_name = 'myapp/email_change.html'
+    success_url = reverse_lazy('setting')
+
+class icon_change(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    fields = ['img']
+    template_name = 'myapp/icon_change.html'
+    success_url = reverse_lazy('setting')
+
 class logout(LogoutView):
     template_name = 'myapp/index.html'

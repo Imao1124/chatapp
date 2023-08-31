@@ -1,3 +1,18 @@
-S
-<button class="header-reload-button" onclick="location.href='setting/{{ pk }}/username_change'">ユーザー名変更</button>
-<button class="header-reload-button" onclick="location.href='../logout'">ログアウト</button>
+<!DOCTYPE html>
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/setting.css' %}">
+{% endblock %}
+
+{% block header-title %}設定{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="button"><a href='setting/{{ pk }}/username_change'>ユーザー名変更</a></div>
+        <div class="button"><a href='setting/{{ pk }}/email_change'>メールアドレス変更</a></div>
+        <div class="button"><a href='setting/{{ pk }}/icon_change'>アイコン変更</a></div>
+        <div class="button"><a href='logout'>ログアウト</a></div>
+    </div>
+{% endblock %}

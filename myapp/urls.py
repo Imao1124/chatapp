@@ -11,6 +11,8 @@ urlpatterns = [
     path('talk_room/<int:pk>', views.talk_room, name='talk_room'),
     path('setting', views.setting, name='setting'),
     path('setting/<int:pk>/username_change', views.username_change.as_view(), name='username_change'),
+    path('setting/<int:pk>/email_change', views.email_change.as_view(), name='email_change'),
+    path('setting/<int:pk>/icon_change', views.icon_change.as_view(), name='icon_change'),
     path('logout', views.logout.as_view(), name='logout_view'),
 ]
 
