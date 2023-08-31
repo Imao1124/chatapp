@@ -2,12 +2,17 @@ form {
     margin: 10px auto;
 }
 
+table {
+    margin: 20px auto;
+}
+
 th,td {
     padding: 10px; 
 }
 
 .submit {
     margin: 10px auto;
+    margin-top: 20px;
     font-size: 1rem;
     display: block;
     background-color: white;

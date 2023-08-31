@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView,  LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Message
@@ -84,6 +84,10 @@ class icon_change(LoginRequiredMixin, UpdateView):
     model = CustomUser
     fields = ['img']
     template_name = 'myapp/icon_change.html'
+    success_url = reverse_lazy('setting')
+
+class password_change(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'myapp/password_change.html'
     success_url = reverse_lazy('setting')
 
 class logout(LogoutView):

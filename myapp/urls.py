@@ -13,6 +13,7 @@ urlpatterns = [
     path('setting/<int:pk>/username_change', views.username_change.as_view(), name='username_change'),
     path('setting/<int:pk>/email_change', views.email_change.as_view(), name='email_change'),
     path('setting/<int:pk>/icon_change', views.icon_change.as_view(), name='icon_change'),
+    path('setting/<int:pk>/password_change', views.password_change.as_view(), name='password_change'),
     path('logout', views.logout.as_view(), name='logout_view'),
 ]
 
