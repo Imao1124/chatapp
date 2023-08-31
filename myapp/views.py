@@ -30,7 +30,6 @@ def friends(request):
     for friend in friends:
         friend['latest_message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()
         
-
     context = {
         'friends': friends,
     }

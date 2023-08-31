@@ -20,8 +20,7 @@
                 <div class="username-container">{{ friend.username }}</div>
                 <div class="messagetime-container">
                     <div class="message-container">{{ friend.latest_message.text }}</div>
-                    <div class="time-container">{{ friend.latest_message.timestamp|date:"H:i" }}</div>
-                    {% comment %} TODO:カスタムテンプレートフィルタで時刻or日付表示 {% endcomment %}
+                    <div class="time-container">{{ friend.latest_message.timestamp|custom_datetime_display }}</div>
                 </div>
             </div>
     </div>
