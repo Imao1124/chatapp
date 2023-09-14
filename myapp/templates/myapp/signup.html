@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
 {% endblock %}
 
-{% block header-title %}ユーザー名変更{% endblock %}
+{% block header-title %}ユーザー登録{% endblock %}
 
 {% block content %}
      <form method='post' enctype="multipart/form-data">
@@ -22,7 +22,7 @@
           {% endfor %}
           </table>
 
-          <button type="submit" class="submit">変更</button>
+          <button type="submit" class="submit">登録</button>
 
           {% for field in form %}
                {% if field.errors %}

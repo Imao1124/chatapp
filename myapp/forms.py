@@ -1,6 +1,6 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser, Message
-from django import forms
 from django.utils import timezone
 
 class SignUpForm(UserCreationForm):
@@ -11,8 +11,9 @@ class SignUpForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['placeholder'] = field.label
+
+        self.fields['username'].widget.attrs['placeholder'] = 'ユーザー名を入力してください'
+        self.fields['password'].widget.attrs['placeholder'] = 'パスワードを入力してください'
 
 class MessageForm(forms.ModelForm):
     class Meta:

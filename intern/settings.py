@@ -141,3 +141,33 @@ if os.path.isfile('.env'): # .envファイルが存在しない時にもエラ�
 
     DEBUG = env('DEBUG')
     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'loggers': {
+        'myapp': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'dev',
+        },
+    },
+
+    'formatters': {
+        'dev': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s \n',
+        },
+    },
+}

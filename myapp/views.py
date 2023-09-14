@@ -6,6 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Message
 from .forms import SignUpForm, LoginForm, MessageForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     return render(request, "myapp/index.html")
@@ -15,6 +18,10 @@ class signup(CreateView):
     model = CustomUser
     template_name = 'myapp/signup.html'
     success_url = reverse_lazy('index') # signup に成功したら index にリダイレクト
+
+    def form_valid(self, form):
+        logger.info('User {} signed up'.format(form.cleaned_data['username']))
+        return super().form_valid(form)
 
 class login(LoginView):
     form_class = LoginForm
