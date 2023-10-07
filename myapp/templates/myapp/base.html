@@ -1,3 +1,4 @@
+{% load django_bootstrap5 %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
@@ -5,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/base.css' %}" />
+    {% bootstrap_css %}<!-- BootstrapのCSSの読み込み -->
+    {% bootstrap_javascript %}<!-- JavaScriptの読み込み -->
     {% block extra_style %}{% endblock %}
     <title>DeMiAインターン</title>
 </head>
