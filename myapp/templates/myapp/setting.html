@@ -14,6 +14,6 @@
         <div class="button"><a href='setting/{{ pk }}/email_change'>メールアドレス変更</a></div>
         <div class="button"><a href='setting/{{ pk }}/icon_change'>アイコン変更</a></div>
         <div class="button"><a href='setting/{{ pk }}/password_change'>パスワード変更</a></div>
-        <div class="button"><a href='logout'>ログアウト</a></div>
+        <div class="button"><a href="{% url 'account_logout' %}">ログアウト</a></div>
     </div>
 {% endblock %}

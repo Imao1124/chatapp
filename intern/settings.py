@@ -208,8 +208,17 @@ ACCOUNT_EMAIL_REQUIRED = True
 LOGIN_REDIRECT_URL = 'friends'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'index'
 
+# ログアウトリンクのクリック一発でログアウトする設定
+ACCOUNT_LOGOUT_ON_GET = True
+
 # django-allauthが送信するメールの件名に自動付与される接頭辞をブランクにする設定
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
 # デフォルトのメール送信元を設定
 DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
+
+# メール配信先をコンソールにする設定
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# メールアドレス認証後の遷移先の指定(デフォルトだと /login/ になる)
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/accounts/login/'
