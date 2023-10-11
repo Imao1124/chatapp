@@ -90,8 +90,12 @@ WSGI_APPLICATION = 'intern.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  #PostgreSQL使いますよ宣言
+        'NAME': 'chatappdb', # データベース名
+        'USER': 'imakazu', # データベースに接続するユーザー名
+        'PASSWORD': 'thisistest', # データベースに接続する際のパスワード
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
