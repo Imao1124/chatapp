@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Message
-from .forms import SignUpForm, LoginForm, MessageForm
+from .forms import CustomSignupForm, LoginForm, MessageForm
 import logging
 
 logger = logging.getLogger(__name__)
@@ -14,7 +14,7 @@ def index(request):
     return render(request, "myapp/index.html")
 
 class signup(CreateView):
-    form_class = SignUpForm
+    form_class = CustomSignupForm
     model = CustomUser
     template_name = 'myapp/signup.html'
     success_url = reverse_lazy('index') # signup に成功したら index にリダイレクト

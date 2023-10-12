@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "myapp/base.html" %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/signup.css' %}">
+{% endblock %}
+
+{% block header-title %}ユーザー登録{% endblock %}
+
+{% block content %}
+     <form method='post' enctype="multipart/form-data">
+
+          {% csrf_token %}
+
+          
+          {% comment %} 
+          <table>
+          {% for field in form %}
+          <tr>
+               <th>{{ field.label_tag }}</th>
+               <td>{{ field }}</td>
+          </tr>
+          {% endfor %}
+          </table>
+          {% endcomment %}
+
+          <div class="mb-4 col-4">
+          {% bootstrap_form form %}
+          </div>
+
+          <button type="submit" class="submit">登録</button>
+
+          {% for field in form %}
+               {% if field.errors %}
+                    {{ field.errors }}
+               {% endif %}
+          {% endfor %}
+          
+     </form>
+{% endblock %}
+
+{% block footer %}{% endblock %}

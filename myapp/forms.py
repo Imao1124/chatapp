@@ -3,10 +3,27 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser, Message
 from django.utils import timezone
 
-class SignUpForm(UserCreationForm):
+from allauth.account.forms import SignupForm    
+
+class CustomSignupForm(SignupForm):
+
+    icon = forms.ImageField(label='アイコン', required=True)
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password1', 'password2', 'img')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+       
+    def signup(self, request, user):
+        user.img = self.cleaned_data['icon']
+        user.save()
+        return user
+
+
+# class SignUpForm(UserCreationForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'email', 'password1', 'password2', 'img')
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

@@ -226,3 +226,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # メールアドレス認証後の遷移先の指定(デフォルトだと /login/ になる)
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/accounts/login/'
+
+ACCOUNT_FORMS = {
+    'signup': 'myapp.forms.CustomSignupForm',
+}

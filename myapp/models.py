@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 class CustomUser(AbstractUser):
-    img = models.ImageField()
-
+    img = models.ImageField(upload_to="media/", blank=True, null=True)
+    is_active = models.BooleanField(default=True)
     class Meta:
         verbose_name = 'CustomUser'
 
