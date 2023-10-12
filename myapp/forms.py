@@ -6,7 +6,6 @@ from django.utils import timezone
 from allauth.account.forms import SignupForm    
 
 class CustomSignupForm(SignupForm):
-
     icon = forms.ImageField(label='アイコン', required=True)
     class Meta:
         model = CustomUser
@@ -18,12 +17,6 @@ class CustomSignupForm(SignupForm):
         user.img = self.cleaned_data['icon']
         user.save()
         return user
-
-
-# class SignUpForm(UserCreationForm):
-#     class Meta:
-#         model = CustomUser
-#         fields = ('username', 'email', 'password1', 'password2', 'img')
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

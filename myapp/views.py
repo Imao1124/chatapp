@@ -33,6 +33,13 @@ def friends(request):
     friends = CustomUser.objects.all().values('pk', 'username', 'img')
     friends = friends.exclude(pk=request.user.pk) # 自分以外のユーザーを取り出す
 
+    query = request.GET.get('query')
+
+    print(query)
+
+    if query:
+        friends = friends.filter(username__icontains=query)
+
     # pkとそれぞれのユーザーとの最新のメッセージを格納
     for friend in friends:
         friend['latest_message'] = Message.get_private_message(request.user, CustomUser.objects.get(username=friend['username'])).last()

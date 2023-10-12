@@ -26,8 +26,27 @@
           </table>
           {% endcomment %}
 
-          <div class="mb-4 col-4">
-          {% bootstrap_form form %}
+          <div class="mb-4 col-mine">
+               <div class="mb-3">
+                    <label class="form-label" for="id_email">メールアドレス</label>
+                    <input type="email" name="email" placeholder="Email address" 
+                         autocomplete="email" class="form-control" required="" id="id_email">
+               </div>
+               <div class="mb-3">
+                    <label class="form-label" for="id_password1">パスワード</label>
+                    <input type="password" name="password1" placeholder="Password" 
+                    autocomplete="new-password" class="form-control" required="" id="id_password1">
+               </div>
+               <div class="mb-3">
+                    <label class="form-label" for="id_password2">パスワード（確認）</label>
+                    <input type="password" name="password2" placeholder="Password (again)" 
+                    autocomplete="new-password" class="form-control" required="" id="id_password2">
+               </div>
+               <div class="mb-3">
+                    <label class="form-label" for="id_icon">アイコン</label>
+                    <input type="file" name="icon" accept="image/*" 
+                    class="form-control" required="" id="id_icon">
+               </div>
           </div>
 
           <button type="submit" class="submit">登録</button>

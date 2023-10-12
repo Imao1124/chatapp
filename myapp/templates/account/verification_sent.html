@@ -1,0 +1,12 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your Email Address" %}{% endblock head_title %}
+
+{% block content %}
+    <h1>{% trans "メールアドレスを認証してください" %}</h1>
+
+    <p>{% blocktrans %}確認のためメールを送信しました。 提供されたリンクに従って登録を完了してください。 メールが表示されない場合は、迷惑メールフォルダーを確認してください。 数分以内にメールが届かない場合は、お問い合わせください。{% endblocktrans %}</p>
+
+{% endblock content %}
