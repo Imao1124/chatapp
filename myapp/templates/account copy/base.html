@@ -13,7 +13,7 @@
 
     {% if messages %}
     <div>
-      <strong>{% trans "メッセージ:" %}</strong>
+      <strong>{% trans "Messages:" %}</strong>
       <ul>
         {% for message in messages %}
         <li>{{message}}</li>
@@ -23,14 +23,14 @@
     {% endif %}
 
     <div>
-      <strong>{% trans "メニュー:" %}</strong>
+      <strong>{% trans "Menu:" %}</strong>
       <ul>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">{% trans "メールアドレスを変更" %}</a></li>
-        <li><a href="{% url 'account_logout' %}">{% trans "ログアウト" %}</a></li>
+        <li><a href="{% url 'account_email' %}">{% trans "Change Email" %}</a></li>
+        <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
         {% else %}
-        <li><a href="{% url 'account_login' %}">{% trans "ログイン" %}</a></li>
-        <li><a href="{% url 'account_signup' %}">{% trans "登録" %}</a></li>
+        <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+        <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
         {% endif %}
       </ul>
     </div>
