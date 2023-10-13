@@ -11,15 +11,21 @@
 {% block header-title %}友達{% endblock %}
 
 {% block content %}
-    <form action="" method="get">
-        <input name="query" value="{{ request.GET.query }}" type="text" />
-        <button type="submit">検索</button>
+    <form action="" method="get" class="search-form">
+        <input name="query" value="{{ request.GET.query }}" type="text" class="search-input" placeholder="検索">
+        <button type="submit" class="search-button">検索</button>
     </form>
 
     {% for friend in friends %}
     <a href="/talk_room/{{ friend.pk }}">
     <div class="user-container">        
-            <div class="icon-container"><img src="/media/{{ friend.img }}" class="icon"></div>
+            <div class="icon-container">
+                {% if friend.img %}
+                    <img src="/media/{{ friend.img }}" class="icon">
+                {% else %}
+                    <img src="/media/media/default.png" class="icon">
+                {% endif %}
+            </div>
             <div class="namemessage-container">
                 <div class="username-container">{{ friend.username }}</div>
                 <div class="messagetime-container">

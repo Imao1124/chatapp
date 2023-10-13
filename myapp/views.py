@@ -35,8 +35,6 @@ def friends(request):
 
     query = request.GET.get('query')
 
-    print(query)
-
     if query:
         friends = friends.filter(username__icontains=query)
 
