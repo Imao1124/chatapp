@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.message-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+}
+
+.menu-container {
+    margin-bottom: 20px;
+}
+
+.content-container {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
